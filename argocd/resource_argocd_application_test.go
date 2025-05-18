@@ -2378,6 +2378,7 @@ resource "argocd_application" "multiple_sources" {
 		repo_url        = "https://github.com/argoproj/argo-cd.git"
 		path            = "test/e2e/testdata/guestbook"
 		target_revision = "HEAD"
+		name            = "guestbook"
 	}
 
     destination {
@@ -2437,6 +2438,7 @@ resource "argocd_application" "helm_values_external" {
     project = "default" 
   
     source {
+      name            = "wordpress-helm"   
       repo_url        = "https://charts.helm.sh/stable"
       chart           = "wordpress"
       target_revision = "9.0.3"
@@ -2446,9 +2448,10 @@ resource "argocd_application" "helm_values_external" {
     }
 
     source {
+      name            = "wodpress-values"
+      ref             = "values"
       repo_url        = "https://github.com/argoproj/argocd-example-apps.git"
       target_revision = "HEAD"
-      ref             = "values"
     }
 
     destination {
