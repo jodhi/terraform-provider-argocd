@@ -1077,9 +1077,10 @@ func TestAccArgoCDApplication_MultipleSources(t *testing.T) {
 						"spec.0.source.0.chart",
 						"opensearch",
 					),
-					resource.TestCheckNoResourceAttr(
+					resource.TestCheckResourceAttr(
 						"argocd_application.multiple_sources",
 						"spec.0.source.0.name",
+						"",
 					),
 					resource.TestCheckResourceAttr(
 						"argocd_application.multiple_sources",
@@ -2467,7 +2468,7 @@ resource "argocd_application" "helm_values_external" {
     }
 
     source {
-      name            = "wodpress-values"
+      name            = "wordpress-values"
       ref             = "values"
       repo_url        = "https://github.com/argoproj/argocd-example-apps.git"
       target_revision = "HEAD"
