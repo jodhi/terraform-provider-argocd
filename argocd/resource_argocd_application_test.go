@@ -1077,10 +1077,19 @@ func TestAccArgoCDApplication_MultipleSources(t *testing.T) {
 						"spec.0.source.0.chart",
 						"opensearch",
 					),
+					resource.TestCheckNoResourceAttr(
+						"argocd_application.multiple_sources",
+						"spec.0.source.0.name",
+					),
 					resource.TestCheckResourceAttr(
 						"argocd_application.multiple_sources",
 						"spec.0.source.1.path",
 						"test/e2e/testdata/guestbook",
+					),
+					resource.TestCheckResourceAttr(
+						"argocd_application.multiple_sources",
+						"spec.0.source.1.name",
+						"guestbook",
 					),
 				),
 			},
@@ -1111,6 +1120,11 @@ func TestAccArgoCDApplication_HelmValuesFromExternalGitRepo(t *testing.T) {
 						"spec.0.source.0.chart",
 						"wordpress",
 					),
+					resource.TestCheckResourceAttr(
+						"argocd_application.helm_values_external",
+						"spec.0.source.0.name",
+						"wordpress-helm",
+					),
 					resource.TestCheckResourceAttrSet(
 						"argocd_application.helm_values_external",
 						"spec.0.source.0.helm.0.value_files.#",
@@ -1119,6 +1133,11 @@ func TestAccArgoCDApplication_HelmValuesFromExternalGitRepo(t *testing.T) {
 						"argocd_application.helm_values_external",
 						"spec.0.source.1.ref",
 						"values",
+					),
+					resource.TestCheckResourceAttr(
+						"argocd_application.helm_values_external",
+						"spec.0.source.1.name",
+						"wordpress-values",
 					),
 				),
 			},
