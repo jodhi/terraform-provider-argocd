@@ -1062,10 +1062,10 @@ func TestAccArgoCDApplication_CustomNamespace(t *testing.T) {
 
 func TestAccArgoCDApplication_MultipleSources(t *testing.T) {
 	resource.ParallelTest(t, resource.TestCase{
-		PreCheck:          func() { 
-			testAccPreCheck(t);
-			testAccPreCheckFeatureSupported(t, features.MultipleApplicationSources);
-			testAccPreCheckFeatureSupported(t, features.ApplicationSourceName);
+		PreCheck: func() {
+			testAccPreCheck(t)
+			testAccPreCheckFeatureSupported(t, features.MultipleApplicationSources)
+			testAccPreCheckFeatureSupported(t, features.ApplicationSourceName)
 		},
 		ProviderFactories: testAccProviders,
 		Steps: []resource.TestStep{
@@ -1110,10 +1110,10 @@ func TestAccArgoCDApplication_MultipleSources(t *testing.T) {
 
 func TestAccArgoCDApplication_HelmValuesFromExternalGitRepo(t *testing.T) {
 	resource.ParallelTest(t, resource.TestCase{
-		PreCheck:          func() { 
-			testAccPreCheck(t);
-			testAccPreCheckFeatureSupported(t, features.MultipleApplicationSources);
-			testAccPreCheckFeatureSupported(t, features.ApplicationSourceName);
+		PreCheck: func() {
+			testAccPreCheck(t)
+			testAccPreCheckFeatureSupported(t, features.MultipleApplicationSources)
+			testAccPreCheckFeatureSupported(t, features.ApplicationSourceName)
 		},
 		ProviderFactories: testAccProviders,
 		Steps: []resource.TestStep{
