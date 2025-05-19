@@ -88,7 +88,7 @@ func resourceArgoCDApplicationCreate(ctx context.Context, d *schema.ResourceData
 		return pluginSDKDiags(diags)
 	}
 
-	objectMeta, spec, err := expandApplication(d,si.IsFeatureSupported(features.ApplicationSourceName))
+	objectMeta, spec, err := expandApplication(d, si.IsFeatureSupported(features.ApplicationSourceName))
 	if err != nil {
 		return errorToDiagnostics("failed to expand application", err)
 	}

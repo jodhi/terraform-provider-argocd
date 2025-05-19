@@ -14,7 +14,7 @@ import (
 
 func expandApplication(d *schema.ResourceData, featureApplicationSourceNameSupported bool) (metadata meta.ObjectMeta, spec application.ApplicationSpec, err error) {
 	metadata = expandMetadata(d)
-	spec, err = expandApplicationSpec(d.Get("spec.0").(map[string]interface{}),featureApplicationSourceNameSupported)
+	spec, err = expandApplicationSpec(d.Get("spec.0").(map[string]interface{}), featureApplicationSourceNameSupported)
 
 	return
 }
@@ -84,10 +84,12 @@ func expandApplicationSource(_ass []interface{}, featureApplicationSourceNameSup
 			if !featureApplicationSourceNameSupported {
 				f := features.ConstraintsMap[features.ApplicationSourceName]
 				err = fmt.Errorf("%s is only supported from ArgoCD %s onwards", f.Name, f.MinVersion.String())
+
+				return ass, err
 			}
+
 			s.Name = v.(string)
 		}
-		
 
 		if v, ok := as["target_revision"]; ok {
 			s.TargetRevision = v.(string)
@@ -116,7 +118,7 @@ func expandApplicationSource(_ass []interface{}, featureApplicationSourceNameSup
 		ass[i] = s
 	}
 
-	return
+	return ass, err
 }
 
 func expandApplicationSourcePlugin(in []interface{}) *application.ApplicationSourcePlugin {

@@ -148,7 +148,7 @@ func resourceArgoCDApplicationSetUpdate(ctx context.Context, d *schema.ResourceD
 	}
 
 	objectMeta, spec, err := expandApplicationSet(
-		d, 
+		d,
 		si.IsFeatureSupported(features.MultipleApplicationSources),
 		si.IsFeatureSupported(features.ApplicationSetIgnoreApplicationDifferences),
 		si.IsFeatureSupported(features.ApplicationSetTemplatePatch),
