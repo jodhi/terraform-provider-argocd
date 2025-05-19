@@ -80,7 +80,7 @@ func expandApplicationSource(_ass []interface{}, featureApplicationSourceNameSup
 			s.Ref = v.(string)
 		}
 
-		if v, ok := as["name"]; ok {
+		if v, ok := as["name"]; ok && v.(string) != "" {
 			if !featureApplicationSourceNameSupported {
 				f := features.ConstraintsMap[features.ApplicationSourceName]
 				err = fmt.Errorf("%s is only supported from ArgoCD %s onwards", f.Name, f.MinVersion.String())
