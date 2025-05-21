@@ -40,7 +40,7 @@ release:
   draft: true
   disable: false
   github:
-    owner: argoproj-labs
+    owner: jodhi 
     name: terraform-provider-argocd
 changelog:
   filters:
